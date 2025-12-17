@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { animate, stagger } from 'animejs';
 import { User, MapPin, GraduationCap, Coffee } from 'lucide-react';
+import { CyberOrb } from './CyberOrb';
+import { TerminalTyping } from './TerminalTyping';
 
 const skills = [
   { name: 'Python', level: 85 },
@@ -36,6 +38,16 @@ export const AboutSection = () => {
               opacity: [0, 1],
               duration: 800,
               delay: 300,
+              ease: 'outExpo',
+            });
+
+            // Animate cyber orb
+            animate('.cyber-orb-container', {
+              scale: [0.5, 1],
+              opacity: [0, 1],
+              rotate: [0, 360],
+              duration: 1500,
+              delay: 500,
               ease: 'outExpo',
             });
 
@@ -91,9 +103,14 @@ export const AboutSection = () => {
           <div className="flex-1 h-px bg-border" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Left - Bio */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left - Bio + CyberOrb */}
           <div className="about-content opacity-0 space-y-6">
+            {/* Cyber Orb */}
+            <div className="cyber-orb-container flex justify-center mb-8">
+              <CyberOrb />
+            </div>
+
             <div className="card-cyber p-6 space-y-4">
               <div className="flex items-center gap-3 text-primary">
                 <User className="w-5 h-5" />
@@ -112,12 +129,6 @@ export const AboutSection = () => {
                 <span className="text-neon-red"> penetration testing</span> and vulnerability research 
                 to <span className="text-secondary">security architecture</span> and incident response.
                 I believe understanding both sides makes you a better security professional.
-              </p>
-
-              <p className="text-muted-foreground leading-relaxed">
-                When I'm not hunting bugs or building decentralized applications, you'll find me
-                contributing to open-source projects, participating in CTFs, or exploring the latest
-                in blockchain technology.
               </p>
             </div>
 
@@ -138,8 +149,11 @@ export const AboutSection = () => {
             </div>
           </div>
 
-          {/* Right - Skills */}
+          {/* Right - Skills + Terminal */}
           <div className="about-content opacity-0 space-y-6">
+            {/* Terminal Typing Animation */}
+            <TerminalTyping />
+
             <div className="card-cyber p-6">
               <div className="flex items-center gap-3 text-primary mb-6">
                 <span className="font-mono text-sm">./skills.sh</span>
