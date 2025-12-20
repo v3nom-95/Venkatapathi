@@ -1,8 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, Suspense } from 'react';
 import { animate, stagger } from 'animejs';
 import { User, MapPin, GraduationCap, Coffee } from 'lucide-react';
 import { CyberOrb } from './CyberOrb';
 import { TerminalTyping } from './TerminalTyping';
+import { Character3D } from './Character3D';
+import { ReactiveCharacter } from './ReactiveCharacter';
 
 const skills = [
   { name: 'Python', level: 85 },
@@ -104,11 +106,14 @@ export const AboutSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left - Bio + CyberOrb */}
+          {/* Left - Bio + 3D Character */}
           <div className="about-content opacity-0 space-y-6">
-            {/* Cyber Orb */}
-            <div className="cyber-orb-container flex justify-center mb-8">
-              <CyberOrb />
+            {/* 3D Reactive Character */}
+            <div className="cyber-orb-container">
+              <Suspense fallback={<CyberOrb />}>
+                <Character3D className="hidden lg:block" />
+                <ReactiveCharacter className="lg:hidden" />
+              </Suspense>
             </div>
 
             <div className="card-cyber p-6 space-y-4">
