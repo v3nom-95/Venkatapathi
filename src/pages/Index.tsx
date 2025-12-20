@@ -6,13 +6,15 @@ import { ProjectsSection } from '@/components/ProjectsSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { ScrollProgressBar } from '@/components/ScrollProgressBar';
+import { Background3D } from '@/components/Background3D';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <Background3D />
       <ScrollProgressBar />
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <HeroSection />
         <AboutSection />
         <ExpertiseSection />

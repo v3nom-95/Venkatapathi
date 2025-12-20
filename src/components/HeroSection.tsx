@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, Suspense } from 'react';
 import { animate, stagger, utils } from 'animejs';
 import { Terminal, Shield, Code2, ChevronDown, Boxes } from 'lucide-react';
 import { HackerScene } from './HackerScene';
 import { MatrixRain } from './MatrixRain';
 import { FloatingElements } from './FloatingElements';
+import { CyberGlobe3D } from './CyberGlobe3D';
 
 export const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -242,12 +243,14 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right - Hacker Scene Animation */}
+          {/* Right - 3D Cyber Globe */}
           <div 
             className="hacker-scene opacity-0 hidden lg:block transition-transform duration-300"
             style={{ transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)` }}
           >
-            <HackerScene />
+            <Suspense fallback={<HackerScene />}>
+              <CyberGlobe3D />
+            </Suspense>
           </div>
         </div>
 
