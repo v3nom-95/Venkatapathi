@@ -5,10 +5,12 @@ import { ExpertiseSection } from '@/components/ExpertiseSection';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
+import { ScrollProgressBar } from '@/components/ScrollProgressBar';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <ScrollProgressBar />
       <Navbar />
       <main>
         <HeroSection />
