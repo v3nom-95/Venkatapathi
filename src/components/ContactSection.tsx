@@ -3,10 +3,10 @@ import { animate, stagger } from 'animejs';
 import { Mail, Github, Linkedin, Twitter, Send } from 'lucide-react';
 
 const socialLinks = [
-  { icon: Github, href: '#', label: 'GitHub' },
+  { icon: Github, href: 'https://github.com/v3nom-95', label: 'GitHub' },
   { icon: Linkedin, href: '#', label: 'LinkedIn' },
   { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Mail, href: 'mailto:v3nom95@example.com', label: 'Email' },
+  { icon: Mail, href: 'mailto:updates@venkatapathibabuidukuda@gmail.com', label: 'Email' },
 ];
 
 export const ContactSection = () => {
@@ -109,7 +109,8 @@ export const ContactSection = () => {
           {/* CTA Button */}
           <div className="contact-content opacity-0 mb-12">
             <a
-              href="mailto:v3nom95@example.com"
+              href="mailto:updates@venkatapathibabuidukuda@gmail.com"
+              aria-label="Send updates email"
               className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-mono font-semibold rounded hover:glow-green transition-all duration-300"
             >
               <Send className="w-5 h-5" />
@@ -124,6 +125,8 @@ export const ContactSection = () => {
                 key={label}
                 href={href}
                 aria-label={label}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="social-link opacity-0 p-3 border border-border rounded-lg text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-green transition-all duration-300"
               >
                 <Icon className="w-6 h-6" />
