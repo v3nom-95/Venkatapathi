@@ -1,10 +1,9 @@
 import { useEffect, useRef, Suspense } from 'react';
-import { animate, stagger } from 'animejs';
+import { animate } from 'animejs';
 import { User, MapPin, GraduationCap, Coffee } from 'lucide-react';
 import { CyberOrb } from './CyberOrb';
 import { TerminalTyping } from './TerminalTyping';
-import { Character3D } from './Character3D';
-import { ReactiveCharacter } from './ReactiveCharacter';
+import { ArcReactor3D } from './ArcReactor3D';
 
 const skills = [
   { name: 'Python', level: 85 },
@@ -108,11 +107,10 @@ export const AboutSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left - Bio + 3D Character */}
           <div className="about-content opacity-0 space-y-6">
-            {/* 3D Reactive Character */}
+            {/* Iron Man Arc Reactor 3D */}
             <div className="cyber-orb-container">
               <Suspense fallback={<CyberOrb />}>
-                <Character3D className="hidden lg:block" />
-                <ReactiveCharacter className="lg:hidden" />
+                <ArcReactor3D />
               </Suspense>
             </div>
 
