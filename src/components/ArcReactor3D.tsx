@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
 import { 
   Float, 
@@ -855,12 +855,278 @@ const ArcReactorScene = () => {
   );
 };
 
+// JARVIS HUD Component
+const JarvisHUD = () => {
+  const [powerLevel, setPowerLevel] = useState(87);
+  const [systemStatus, setSystemStatus] = useState('ONLINE');
+  const [reactorTemp, setReactorTemp] = useState(2847);
+  const [dataStreams, setDataStreams] = useState<string[]>([]);
+  
+  useEffect(() => {
+    // Simulate fluctuating power levels
+    const powerInterval = setInterval(() => {
+      setPowerLevel(prev => {
+        const change = (Math.random() - 0.5) * 4;
+        return Math.min(100, Math.max(75, prev + change));
+      });
+    }, 500);
+    
+    // Simulate temperature fluctuations
+    const tempInterval = setInterval(() => {
+      setReactorTemp(prev => {
+        const change = (Math.random() - 0.5) * 50;
+        return Math.round(Math.min(3200, Math.max(2600, prev + change)));
+      });
+    }, 300);
+    
+    // Generate data stream entries
+    const dataMessages = [
+      'INITIALIZING NEURAL INTERFACE...',
+      'SCANNING PERIMETER...',
+      'THREAT LEVEL: MINIMAL',
+      'POWER CELLS: OPTIMAL',
+      'SYSTEM DIAGNOSTICS: PASS',
+      'ARC REACTOR: STABLE',
+      'ENERGY OUTPUT: 3.2 GW',
+      'SUIT INTEGRITY: 100%',
+      'PALLADIUM CORE: ACTIVE',
+      'J.A.R.V.I.S.: ONLINE',
+      'FLIGHT SYSTEMS: READY',
+      'WEAPONS: STANDBY',
+    ];
+    
+    let messageIndex = 0;
+    const dataInterval = setInterval(() => {
+      setDataStreams(prev => {
+        const newStreams = [...prev, dataMessages[messageIndex % dataMessages.length]];
+        messageIndex++;
+        return newStreams.slice(-4);
+      });
+    }, 2000);
+    
+    return () => {
+      clearInterval(powerInterval);
+      clearInterval(tempInterval);
+      clearInterval(dataInterval);
+    };
+  }, []);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none font-mono text-[10px] md:text-xs overflow-hidden">
+      {/* Top Left HUD Panel */}
+      <div className="absolute top-2 left-2 md:top-4 md:left-4">
+        <div className="relative">
+          {/* Corner brackets */}
+          <div className="absolute -top-1 -left-1 w-3 h-3 border-l border-t border-secondary/80" />
+          <div className="absolute -top-1 -right-1 w-3 h-3 border-r border-t border-secondary/80" />
+          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-l border-b border-secondary/80" />
+          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r border-b border-secondary/80" />
+          
+          <div className="bg-background/60 backdrop-blur-sm border border-secondary/40 p-2 md:p-3 min-w-[120px] md:min-w-[160px]">
+            <div className="flex items-center gap-2 mb-2">
+              <div className={`w-2 h-2 rounded-full ${systemStatus === 'ONLINE' ? 'bg-primary animate-pulse' : 'bg-destructive'}`} />
+              <span className="text-primary tracking-widest">SYSTEM STATUS</span>
+            </div>
+            <div className="text-secondary font-bold tracking-wider">{systemStatus}</div>
+            
+            <div className="mt-3 space-y-1">
+              <div className="flex justify-between text-muted-foreground">
+                <span>REACTOR</span>
+                <span className="text-primary">ACTIVE</span>
+              </div>
+              <div className="flex justify-between text-muted-foreground">
+                <span>SHIELDS</span>
+                <span className="text-primary">ENABLED</span>
+              </div>
+              <div className="flex justify-between text-muted-foreground">
+                <span>AI CORE</span>
+                <span className="text-secondary">J.A.R.V.I.S.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Top Right Power Level */}
+      <div className="absolute top-2 right-2 md:top-4 md:right-4">
+        <div className="relative">
+          <div className="absolute -top-1 -left-1 w-3 h-3 border-l border-t border-primary/80" />
+          <div className="absolute -top-1 -right-1 w-3 h-3 border-r border-t border-primary/80" />
+          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-l border-b border-primary/80" />
+          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r border-b border-primary/80" />
+          
+          <div className="bg-background/60 backdrop-blur-sm border border-primary/40 p-2 md:p-3 min-w-[100px] md:min-w-[140px]">
+            <div className="text-primary tracking-widest mb-2">POWER LEVEL</div>
+            <div className="text-2xl md:text-3xl font-bold text-secondary tabular-nums">
+              {powerLevel.toFixed(1)}%
+            </div>
+            
+            {/* Power bar */}
+            <div className="mt-2 h-1.5 bg-muted rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-300"
+                style={{ width: `${powerLevel}%` }}
+              />
+            </div>
+            
+            <div className="mt-2 grid grid-cols-2 gap-1 text-[8px] md:text-[10px]">
+              <div className="text-muted-foreground">OUTPUT</div>
+              <div className="text-primary text-right">3.2 GW</div>
+              <div className="text-muted-foreground">EFF.</div>
+              <div className="text-primary text-right">98.7%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Bottom Left - Temperature & Metrics */}
+      <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4">
+        <div className="relative">
+          <div className="absolute -top-1 -left-1 w-3 h-3 border-l border-t border-destructive/60" />
+          <div className="absolute -top-1 -right-1 w-3 h-3 border-r border-t border-destructive/60" />
+          
+          <div className="bg-background/60 backdrop-blur-sm border border-destructive/30 p-2 md:p-3 min-w-[100px] md:min-w-[130px]">
+            <div className="text-destructive tracking-widest mb-1">CORE TEMP</div>
+            <div className="text-xl md:text-2xl font-bold text-foreground tabular-nums">
+              {reactorTemp}°K
+            </div>
+            
+            {/* Temperature gauge */}
+            <div className="mt-2 flex gap-0.5">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div 
+                  key={i}
+                  className={`h-3 w-2 ${
+                    i < Math.floor(((reactorTemp - 2600) / 600) * 8) 
+                      ? 'bg-gradient-to-t from-destructive to-yellow-500' 
+                      : 'bg-muted/30'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            <div className="mt-2 text-[8px] md:text-[10px] text-muted-foreground">
+              <div className="flex justify-between">
+                <span>NOMINAL</span>
+                <span className="text-primary">2800°K</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Bottom Right - Data Stream */}
+      <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4">
+        <div className="relative">
+          <div className="absolute -top-1 -right-1 w-3 h-3 border-r border-t border-secondary/60" />
+          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r border-b border-secondary/60" />
+          
+          <div className="bg-background/60 backdrop-blur-sm border border-secondary/30 p-2 md:p-3 min-w-[140px] md:min-w-[180px] max-h-[80px] md:max-h-[100px] overflow-hidden">
+            <div className="text-secondary tracking-widest mb-2 flex items-center gap-2">
+              <span>DATA STREAM</span>
+              <div className="w-1 h-1 bg-secondary rounded-full animate-pulse" />
+            </div>
+            
+            <div className="space-y-1">
+              {dataStreams.map((msg, i) => (
+                <div 
+                  key={i}
+                  className="text-muted-foreground text-[8px] md:text-[10px] animate-fade-in truncate"
+                  style={{ 
+                    opacity: 1 - (dataStreams.length - 1 - i) * 0.25,
+                  }}
+                >
+                  {'>'} {msg}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Center scanning ring */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative w-48 h-48 md:w-64 md:h-64">
+          {/* Rotating scan line */}
+          <div 
+            className="absolute inset-0 rounded-full border border-primary/20"
+            style={{
+              background: 'conic-gradient(from 0deg, transparent 0deg, hsl(var(--primary) / 0.1) 30deg, transparent 60deg)',
+              animation: 'spin 4s linear infinite',
+            }}
+          />
+          
+          {/* Inner measurement marks */}
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-0.5 h-2 bg-primary/40"
+              style={{
+                left: '50%',
+                top: '0%',
+                transformOrigin: '50% 400%',
+                transform: `translateX(-50%) rotate(${i * 30}deg)`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      
+      {/* Top center status bar */}
+      <div className="absolute top-2 left-1/2 -translate-x-1/2">
+        <div className="bg-background/40 backdrop-blur-sm border border-primary/30 px-3 md:px-4 py-1 flex items-center gap-2 md:gap-3">
+          <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+          <span className="text-primary tracking-[0.3em] text-[10px] md:text-xs">STARK INDUSTRIES</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" style={{ animationDelay: '0.5s' }} />
+        </div>
+      </div>
+      
+      {/* Side measurement bars */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col gap-1 ml-1">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div 
+            key={i}
+            className="h-0.5 bg-primary/40 animate-pulse"
+            style={{ 
+              width: `${8 + Math.random() * 12}px`,
+              animationDelay: `${i * 0.2}s`,
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-1 mr-1">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div 
+            key={i}
+            className="h-0.5 bg-secondary/40 animate-pulse"
+            style={{ 
+              width: `${8 + Math.random() * 12}px`,
+              animationDelay: `${i * 0.2 + 0.1}s`,
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Hexagonal grid overlay (subtle) */}
+      <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="hexGrid" width="28" height="49" patternUnits="userSpaceOnUse">
+            <path d="M14 0L28 8.5V25.5L14 34L0 25.5V8.5L14 0Z" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-secondary"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#hexGrid)" />
+      </svg>
+    </div>
+  );
+};
+
 export const ArcReactor3D = ({ className = '' }: { className?: string }) => {
   return (
     <div className={`relative ${className}`} style={{ height: '400px' }}>
       {/* Multi-layer glow effects */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-64 h-64 bg-cyan-500/20 rounded-full blur-[80px] animate-pulse" />
+        <div className="w-64 h-64 bg-secondary/20 rounded-full blur-[80px] animate-pulse" />
       </div>
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-48 h-48 bg-primary/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }} />
@@ -869,7 +1135,7 @@ export const ArcReactor3D = ({ className = '' }: { className?: string }) => {
         <div className="w-32 h-32 bg-secondary/40 rounded-full blur-2xl" />
       </div>
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-16 h-16 bg-white/50 rounded-full blur-xl" />
+        <div className="w-16 h-16 bg-foreground/50 rounded-full blur-xl" />
       </div>
       
       <Canvas
@@ -885,29 +1151,21 @@ export const ArcReactor3D = ({ className = '' }: { className?: string }) => {
         <ArcReactorScene />
       </Canvas>
       
-      {/* HUD corner elements */}
-      <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-primary/60">
-        <div className="absolute top-1 left-1 w-2 h-2 bg-primary/80 animate-pulse" />
-      </div>
-      <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-primary/60">
-        <div className="absolute top-1 right-1 w-2 h-2 bg-primary/80 animate-pulse" style={{ animationDelay: '0.25s' }} />
-      </div>
-      <div className="absolute bottom-0 left-0 w-12 h-12 border-l-2 border-b-2 border-primary/60">
-        <div className="absolute bottom-1 left-1 w-2 h-2 bg-primary/80 animate-pulse" style={{ animationDelay: '0.5s' }} />
-      </div>
-      <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-primary/60">
-        <div className="absolute bottom-1 right-1 w-2 h-2 bg-primary/80 animate-pulse" style={{ animationDelay: '0.75s' }} />
-      </div>
+      {/* JARVIS HUD Overlay */}
+      <JarvisHUD />
       
-      {/* Status indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 pointer-events-none">
-        {[0, 1, 2, 3, 4].map((i) => (
-          <div 
-            key={i}
-            className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"
-            style={{ animationDelay: `${i * 0.15}s` }}
-          />
-        ))}
+      {/* HUD corner elements */}
+      <div className="absolute top-0 left-0 w-8 h-8 md:w-12 md:h-12 border-l-2 border-t-2 border-primary/60 pointer-events-none">
+        <div className="absolute top-1 left-1 w-1.5 h-1.5 md:w-2 md:h-2 bg-primary/80 animate-pulse" />
+      </div>
+      <div className="absolute top-0 right-0 w-8 h-8 md:w-12 md:h-12 border-r-2 border-t-2 border-primary/60 pointer-events-none">
+        <div className="absolute top-1 right-1 w-1.5 h-1.5 md:w-2 md:h-2 bg-primary/80 animate-pulse" style={{ animationDelay: '0.25s' }} />
+      </div>
+      <div className="absolute bottom-0 left-0 w-8 h-8 md:w-12 md:h-12 border-l-2 border-b-2 border-primary/60 pointer-events-none">
+        <div className="absolute bottom-1 left-1 w-1.5 h-1.5 md:w-2 md:h-2 bg-primary/80 animate-pulse" style={{ animationDelay: '0.5s' }} />
+      </div>
+      <div className="absolute bottom-0 right-0 w-8 h-8 md:w-12 md:h-12 border-r-2 border-b-2 border-primary/60 pointer-events-none">
+        <div className="absolute bottom-1 right-1 w-1.5 h-1.5 md:w-2 md:h-2 bg-primary/80 animate-pulse" style={{ animationDelay: '0.75s' }} />
       </div>
     </div>
   );
