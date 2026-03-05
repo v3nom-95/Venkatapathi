@@ -4,9 +4,8 @@ import { Mail, Github, Linkedin, Twitter, Send } from 'lucide-react';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/v3nom-95', label: 'GitHub' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Mail, href: 'mailto:updates@venkatapathibabuidukuda@gmail.com', label: 'Email' },
+  { icon: Linkedin, href: 'https://in.linkedin.com/in/venkatapathi-babu-idukuda-3237b92a7', label: 'LinkedIn' },
+  { icon: Mail, href: 'mailto:idukudavenkatapathi@gmail.com', label: 'Email' },
 ];
 
 export const ContactSection = () => {
@@ -88,15 +87,15 @@ export const ContactSection = () => {
               </div>
               <span className="ml-4 font-mono text-xs text-muted-foreground">v3nom95@portfolio:~</span>
             </div>
-            
+
             <div className="font-mono text-sm space-y-2">
               <div className="text-muted-foreground">
                 <span className="text-primary">$</span> cat contact.txt
               </div>
               <div className="terminal-text text-foreground leading-relaxed">
-                Looking to collaborate on security research, Web3 projects, 
-                or just want to chat about the latest vulnerabilities? 
-                My inbox is always open. Whether you have a question or 
+                Looking to collaborate on security research, Web3 projects,
+                or just want to chat about the latest vulnerabilities?
+                My inbox is always open. Whether you have a question or
                 just want to say hi, I'll get back to you ASAP!
               </div>
               <div className="flex items-center text-muted-foreground mt-4">
@@ -109,8 +108,8 @@ export const ContactSection = () => {
           {/* CTA Button */}
           <div className="contact-content opacity-0 mb-12">
             <a
-              href="mailto:updates@venkatapathibabuidukuda@gmail.com"
-              aria-label="Send updates email"
+              href="mailto:idukudavenkatapathi@gmail.com"
+              aria-label="Send email"
               className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-mono font-semibold rounded hover:glow-green transition-all duration-300"
             >
               <Send className="w-5 h-5" />

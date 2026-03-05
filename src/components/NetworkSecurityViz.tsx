@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { animate, utils } from 'animejs';
+import { animate, utils, stagger } from 'animejs';
 
 interface NetworkSecurityVizProps {
-  type: 'red' | 'blue';
+  type: 'red' | 'blue' | 'ai';
 }
 
 export const NetworkSecurityViz = ({ type }: NetworkSecurityVizProps) => {
@@ -46,6 +46,57 @@ export const NetworkSecurityViz = ({ type }: NetworkSecurityVizProps) => {
         delay: (el, i) => i * 500,
         loop: true,
         ease: 'inExpo',
+      });
+    } else if (type === 'ai') {
+      // AI & ML - Advanced Neural Network animation
+      animate('.nn-node', {
+        scale: [1, 1.2, 1],
+        opacity: [0.5, 1, 0.5],
+        duration: 2000,
+        delay: stagger(100, { grid: [3, 3], from: 'center' }),
+        loop: true,
+        ease: 'easeInOutSine',
+      });
+
+      animate('.nn-path', {
+        strokeDashoffset: [20, 0],
+        opacity: [0.2, 0.5, 0.2],
+        duration: 3000,
+        loop: true,
+        ease: 'linear',
+      });
+
+      animate('.brain-core', {
+        scale: [1, 1.1, 1],
+        filter: ['blur(0px) brightness(1)', 'blur(2px) brightness(1.2)', 'blur(0px) brightness(1)'],
+        duration: 4000,
+        loop: true,
+        ease: 'easeInOutQuad',
+      });
+
+      animate('.brain-ring', {
+        rotate: 360,
+        duration: 10000,
+        loop: true,
+        ease: 'linear',
+      });
+
+      animate('.data-float', {
+        translateY: () => utils.random(-20, 20),
+        translateX: () => utils.random(-20, 20),
+        opacity: [0.1, 0.4, 0.1],
+        duration: () => utils.random(3000, 5000),
+        delay: stagger(200),
+        loop: true,
+        direction: 'alternate',
+        ease: 'easeInOutQuad',
+      });
+
+      animate('.firing-dot', {
+        opacity: [0, 1, 0],
+        duration: 500,
+        loop: true,
+        ease: 'linear',
       });
     } else {
       // Blue Team - Defense visualization
@@ -93,10 +144,10 @@ export const NetworkSecurityViz = ({ type }: NetworkSecurityVizProps) => {
               <stop offset="100%" stopColor="hsl(0 100% 40%)" />
             </linearGradient>
             <filter id="redGlow">
-              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
               <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
           </defs>
@@ -145,6 +196,104 @@ export const NetworkSecurityViz = ({ type }: NetworkSecurityVizProps) => {
     );
   }
 
+  if (type === 'ai') {
+    return (
+      <div ref={containerRef} className="relative w-full h-[300px] bg-black/5 rounded-2xl overflow-hidden border border-primary/10">
+        <svg viewBox="0 0 300 200" className="w-full h-full">
+          <defs>
+            <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="hsl(188 100% 50%)" />
+              <stop offset="50%" stopColor="hsl(210 100% 50%)" />
+              <stop offset="100%" stopColor="hsl(270 100% 60%)" />
+            </linearGradient>
+            <filter id="aiGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+            <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="white" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+
+          {/* Background data particles */}
+          {[...Array(15)].map((_, i) => (
+            <circle
+              key={`p-${i}`}
+              className="data-float"
+              cx={utils.random(0, 300)}
+              cy={utils.random(0, 200)}
+              r={utils.random(0.5, 1.5)}
+              fill="hsl(188 100% 50% / 0.2)"
+            />
+          ))}
+
+          {/* Neural Network Connections (Synapses) */}
+          <g opacity="0.4">
+            {/* Input to Hidden 1 */}
+            <path className="nn-path" d="M40 70 L110 50" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M40 70 L110 100" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M40 130 L110 100" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M40 130 L110 150" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+
+            {/* Hidden 1 to Hidden 2 */}
+            <path className="nn-path" d="M110 50 L180 50" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M110 50 L180 100" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M110 100 L180 50" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M110 100 L180 100" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M110 100 L180 150" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M110 150 L180 100" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M110 150 L180 150" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+
+            {/* Hidden 2 to Output */}
+            <path className="nn-path" d="M180 50 L250 100" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M180 100 L250 100" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+            <path className="nn-path" d="M180 150 L250 100" stroke="url(#aiGradient)" strokeWidth="0.5" fill="none" />
+          </g>
+
+          {/* Active Synapse Firings */}
+          <circle className="firing-dot" r="1.5" fill="white" filter="url(#aiGlow)">
+            <animateMotion dur="2s" repeatCount="indefinite" path="M40 70 L110 100 L180 100 L250 100" />
+          </circle>
+          <circle className="firing-dot" r="1.5" fill="white" filter="url(#aiGlow)">
+            <animateMotion dur="2.5s" repeatCount="indefinite" path="M40 130 L110 100 L180 50 L250 100" />
+          </circle>
+
+          {/* Layer Labels */}
+          <text x="40" y="170" fill="hsl(188 100% 50% / 0.5)" fontSize="6" textAnchor="middle" fontFamily="monospace">INPUT</text>
+          <text x="145" y="185" fill="hsl(210 100% 50% / 0.5)" fontSize="6" textAnchor="middle" fontFamily="monospace">HIDDEN LAYERS</text>
+          <text x="250" y="145" fill="hsl(270 100% 60% / 0.5)" fontSize="6" textAnchor="middle" fontFamily="monospace">OUTPUT</text>
+
+          {/* Nodes */}
+          {/* Input Layer */}
+          <circle className="nn-node input-node" cx="40" cy="70" r="4" fill="hsl(188 100% 50%)" filter="url(#aiGlow)" />
+          <circle className="nn-node input-node" cx="40" cy="130" r="4" fill="hsl(188 100% 50%)" filter="url(#aiGlow)" />
+
+          {/* Hidden Layer 1 */}
+          <circle className="nn-node hidden-node" cx="110" cy="50" r="5" fill="hsl(210 100% 50%)" />
+          <circle className="nn-node hidden-node" cx="110" cy="100" r="5" fill="hsl(210 100% 50%)" />
+          <circle className="nn-node hidden-node" cx="110" cy="150" r="5" fill="hsl(210 100% 50%)" />
+
+          {/* Hidden Layer 2 */}
+          <circle className="nn-node hidden-node" cx="180" cy="50" r="5" fill="hsl(210 100% 50%)" />
+          <circle className="nn-node hidden-node" cx="180" cy="100" r="5" fill="hsl(210 100% 50%)" />
+          <circle className="nn-node hidden-node" cx="180" cy="150" r="5" fill="hsl(210 100% 50%)" />
+
+          {/* Output Layer (Brain) */}
+          <g className="brain-container" filter="url(#aiGlow)">
+            <circle className="brain-core" cx="250" cy="100" r="18" fill="url(#aiGradient)" opacity="0.8" />
+            <text x="250" y="106" fill="white" fontSize="16" textAnchor="middle" fontFamily="monospace" className="brain-icon">🧠</text>
+            <circle className="brain-ring" cx="250" cy="100" r="22" fill="none" stroke="url(#aiGradient)" strokeWidth="1" strokeDasharray="5 3" />
+          </g>
+
+          <text x="150" y="25" fill="white" fontSize="10" textAnchor="middle" fontFamily="monospace" fontWeight="bold" letterSpacing="2">
+            NEURAL ENGINE ACTIVE
+          </text>
+        </svg>
+      </div>
+    );
+  }
+
   return (
     <div ref={containerRef} className="relative w-full h-[300px]">
       <svg viewBox="0 0 300 200" className="w-full h-full">
@@ -154,10 +303,10 @@ export const NetworkSecurityViz = ({ type }: NetworkSecurityVizProps) => {
             <stop offset="100%" stopColor="hsl(210 100% 50%)" />
           </linearGradient>
           <filter id="blueGlow">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
             <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
         </defs>

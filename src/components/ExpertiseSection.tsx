@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { animate, stagger } from 'animejs';
-import { Shield, Skull, Code, Boxes } from 'lucide-react';
+import { Brain, Code, Boxes } from 'lucide-react';
 import { Web3Visualization } from './Web3Visualization';
 import { NetworkSecurityViz } from './NetworkSecurityViz';
 import { FloatingElements } from './FloatingElements';
@@ -19,26 +19,15 @@ const expertiseAreas = [
     visualization: 'web3',
   },
   {
-    id: 'red-team',
-    title: 'Red Teaming',
-    subtitle: 'Offensive Security',
-    color: 'neon-red',
-    icon: Skull,
-    description: 'Penetration testing, vulnerability assessment, and adversary simulation to identify and exploit security weaknesses.',
-    skills: ['Penetration Testing', 'Social Engineering', 'Exploit Development', 'OSINT'],
-    tools: ['Burp Suite', 'Metasploit', 'Nmap', 'Wireshark'],
-    visualization: 'red',
-  },
-  {
-    id: 'blue-team',
-    title: 'Blue Teaming',
-    subtitle: 'Defensive Security',
-    color: 'secondary',
-    icon: Shield,
-    description: 'Security monitoring, incident response, and building robust defenses to protect systems and data.',
-    skills: ['Incident Response', 'SIEM', 'Threat Hunting', 'Forensics'],
-    tools: ['Splunk', 'ELK Stack', 'Snort', 'YARA'],
-    visualization: 'blue',
+    id: 'ai-ml',
+    title: 'AI & ML',
+    subtitle: 'Intelligence Systems',
+    color: 'neon-blue',
+    icon: Brain,
+    description: 'Developing intelligent systems, neural networks, and machine learning models to solve complex problems and automate decision making.',
+    skills: ['Deep Learning', 'Neural Networks', 'NLP', 'Computer Vision'],
+    tools: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Pandas'],
+    visualization: 'ai',
   },
   {
     id: 'web-dev',
@@ -97,11 +86,11 @@ export const ExpertiseSection = () => {
       : color === 'neon-purple' ? 'bg-neon-purple/10'
       : 'bg-primary/10',
     glow: color === 'neon-red' ? 'hover:shadow-[0_0_40px_rgba(255,77,77,0.4)]' 
-          : color === 'secondary' ? 'hover:shadow-[0_0_40px_rgba(0,230,255,0.4)]'
+          : color === 'secondary' || color === 'neon-blue' ? 'hover:shadow-[0_0_40px_rgba(0,230,255,0.4)]'
           : color === 'neon-purple' ? 'hover:shadow-[0_0_40px_rgba(153,51,255,0.4)]'
           : 'hover:shadow-[0_0_40px_rgba(0,255,102,0.4)]',
     floatingColor: (color === 'neon-red' ? 'neon-red' 
-                  : color === 'secondary' ? 'secondary'
+                  : (color === 'secondary' || color === 'neon-blue') ? 'secondary'
                   : color === 'neon-purple' ? 'neon-purple'
                   : 'primary') as 'neon-red' | 'secondary' | 'neon-purple' | 'primary',
   });
@@ -110,10 +99,8 @@ export const ExpertiseSection = () => {
     switch (vizType) {
       case 'web3':
         return <Web3Visualization />;
-      case 'red':
-        return <NetworkSecurityViz type="red" />;
-      case 'blue':
-        return <NetworkSecurityViz type="blue" />;
+      case 'ai':
+        return <NetworkSecurityViz type="ai" />;
       case 'webdev':
         return (
           <div className="relative w-full h-[300px] flex items-center justify-center">

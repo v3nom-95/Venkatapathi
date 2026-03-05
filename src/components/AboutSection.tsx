@@ -6,12 +6,12 @@ import { TerminalTyping } from './TerminalTyping';
 import { ArcReactor3D } from './ArcReactor3D';
 
 const skills = [
-  { name: 'Python', level: 85 },
-  { name: 'JavaScript/TypeScript', level: 80 },
-  { name: 'Solidity', level: 70 },
-  { name: 'Penetration Testing', level: 75 },
-  { name: 'Network Security', level: 80 },
-  { name: 'React/Next.js', level: 85 },
+  'Python',
+  'JavaScript/TypeScript',
+  'Solidity',
+  'Machine Learning',
+  'Neural Networks',
+  'React/Next.js',
 ];
 
 export const AboutSection = () => {
@@ -52,17 +52,7 @@ export const AboutSection = () => {
               ease: 'outExpo',
             });
 
-            // Animate skill bars
-            const skillBars = document.querySelectorAll('.skill-bar');
-            skillBars.forEach((bar, index) => {
-              const level = bar.getAttribute('data-level');
-              animate(bar, {
-                width: `${level}%`,
-                duration: 1500,
-                delay: 600 + index * 100,
-                ease: 'outExpo',
-              });
-            });
+
 
             // Animate stats
             const statNumbers = document.querySelectorAll('.stat-number');
@@ -95,7 +85,7 @@ export const AboutSection = () => {
   return (
     <section id="about" ref={sectionRef} className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 cyber-grid opacity-10" />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
         <div className="about-title opacity-0 flex items-center gap-4 mb-12">
@@ -119,19 +109,19 @@ export const AboutSection = () => {
                 <User className="w-5 h-5" />
                 <span className="font-mono text-sm">whoami</span>
               </div>
-              
+
               <p className="text-muted-foreground leading-relaxed">
-                Hey there! I'm <span className="text-primary font-semibold">Venkatapathi Babu</span>, 
+                Hey there! I'm <span className="text-primary font-semibold">Venkatapathi Babu</span>,
                 also known as <span className="text-secondary font-mono">v3nom95</span> in the digital realm.
-                I'm a passionate student diving deep into the fascinating worlds of cybersecurity, 
+                I'm a passionate student diving deep into the fascinating worlds of artificial intelligence,
                 Web3, and web development.
               </p>
-              
+
               <p className="text-muted-foreground leading-relaxed">
-                My journey involves exploring both offensive and defensive security - from 
-                <span className="text-neon-red"> penetration testing</span> and vulnerability research 
-                to <span className="text-secondary">security architecture</span> and incident response.
-                I believe understanding both sides makes you a better security professional.
+                My journey involves exploring both theoretical and applied AI - from
+                <span className="text-neon-red"> deep learning</span> and natural language processing
+                to <span className="text-secondary">computer vision</span> and generative models.
+                I believe that AI is the future of human-computer interaction.
               </p>
             </div>
 
@@ -162,38 +152,27 @@ export const AboutSection = () => {
                 <span className="font-mono text-sm">./skills.sh</span>
               </div>
 
-              <div className="space-y-5">
+              <div className="flex flex-wrap gap-3">
                 {skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-2">
-                      <span className="font-mono text-sm text-foreground">{skill.name}</span>
-                      <span className="font-mono text-sm text-primary">{skill.level}%</span>
-                    </div>
-                    <div className="h-2 bg-muted rounded-full overflow-hidden">
-                      <div
-                        className="skill-bar h-full bg-gradient-to-r from-primary to-secondary rounded-full"
-                        data-level={skill.level}
-                        style={{ width: 0 }}
-                      />
-                    </div>
-                  </div>
+                  <span
+                    key={skill}
+                    className="px-4 py-2 bg-muted/50 text-foreground text-sm font-mono rounded-lg border border-border hover:border-primary/50 transition-all duration-300 cursor-default"
+                  >
+                    {skill}
+                  </span>
                 ))}
               </div>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <div className="card-cyber p-4 text-center">
-                <div className="stat-number text-2xl font-bold text-primary" data-value="15">0</div>
-                <div className="text-xs text-muted-foreground font-mono mt-1">Projects</div>
+                <div className="stat-number text-2xl font-bold text-primary" data-value="1">0</div>
+                <div className="text-xs text-muted-foreground font-mono mt-1">Project</div>
               </div>
               <div className="card-cyber p-4 text-center">
                 <div className="stat-number text-2xl font-bold text-secondary" data-value="500">0</div>
                 <div className="text-xs text-muted-foreground font-mono mt-1">Commits</div>
-              </div>
-              <div className="card-cyber p-4 text-center">
-                <div className="stat-number text-2xl font-bold text-neon-red" data-value="10">0</div>
-                <div className="text-xs text-muted-foreground font-mono mt-1">CTFs</div>
               </div>
             </div>
           </div>

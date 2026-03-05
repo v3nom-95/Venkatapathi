@@ -12,7 +12,7 @@ function SkillOrb({ position, skill, color, delay = 0 }: { position: [number, nu
       const t = state.clock.getElapsedTime() + delay;
       meshRef.current.position.y = position[1] + Math.sin(t) * 0.2;
       meshRef.current.rotation.y = t * 0.5;
-      
+
       const targetScale = hovered ? 1.3 : 1;
       meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
     }
@@ -35,7 +35,7 @@ function SkillOrb({ position, skill, color, delay = 0 }: { position: [number, nu
             metalness={0.8}
           />
         </mesh>
-        
+
         {/* Glow ring */}
         <mesh rotation={[Math.PI / 2, 0, 0]}>
           <torusGeometry args={[0.5, 0.02, 16, 32]} />
@@ -106,8 +106,8 @@ function CentralCore() {
 
 function OrbitingParticles() {
   const groupRef = useRef<THREE.Group>(null);
-  
-  const particles = useMemo(() => 
+
+  const particles = useMemo(() =>
     Array.from({ length: 20 }, (_, i) => ({
       angle: (i / 20) * Math.PI * 2,
       radius: 2 + Math.random() * 0.5,
@@ -115,7 +115,7 @@ function OrbitingParticles() {
       size: 0.03 + Math.random() * 0.03,
       yOffset: (Math.random() - 0.5) * 0.5,
     })),
-  []);
+    []);
 
   useFrame((state) => {
     if (groupRef.current) {
@@ -150,7 +150,7 @@ export const Skills3D = ({ className = '' }: Skills3DProps) => {
     { name: 'Python', color: '#00ff66', position: [-2, 1, 0] as [number, number, number] },
     { name: 'Solidity', color: '#9933ff', position: [2, 1, 0] as [number, number, number] },
     { name: 'React', color: '#00e6ff', position: [0, 1.5, -1.5] as [number, number, number] },
-    { name: 'Security', color: '#ff4d4d', position: [-1.5, -1, 1] as [number, number, number] },
+    { name: 'AI/ML', color: '#ff4d4d', position: [-1.5, -1, 1] as [number, number, number] },
     { name: 'Web3', color: '#9933ff', position: [1.5, -1, 1] as [number, number, number] },
     { name: 'Node.js', color: '#00ff66', position: [0, -1.5, -1] as [number, number, number] },
   ];

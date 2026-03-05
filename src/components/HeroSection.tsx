@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, Suspense } from 'react';
 import { animate, stagger, utils } from 'animejs';
-import { Terminal, Shield, Code2, ChevronDown, Boxes } from 'lucide-react';
+import { Terminal, Brain, Code2, ChevronDown, Boxes } from 'lucide-react';
 import { HackerScene } from './HackerScene';
 import { MatrixRain } from './MatrixRain';
 import { FloatingElements } from './FloatingElements';
@@ -117,15 +117,15 @@ export const HeroSection = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden scanline">
       {/* Matrix Rain Background */}
       <MatrixRain />
-      
+
       {/* Floating code elements */}
       <FloatingElements count={20} type="code" color="primary" />
       <FloatingElements count={15} type="data" color="secondary" />
-      
+
       {/* Animated background */}
       <div className="absolute inset-0 cyber-grid opacity-20" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background" />
-      
+
       {/* Animated cyber lines */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="cyber-line absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
@@ -133,9 +133,9 @@ export const HeroSection = () => {
         <div className="cyber-line absolute top-2/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-purple/30 to-transparent" />
         <div className="cyber-line absolute bottom-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-red/20 to-transparent" />
       </div>
-      
+
       {/* Floating particles with mouse parallax */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none transition-transform duration-200 ease-out"
         style={{ transform: `translate(${mousePos.x}px, ${mousePos.y}px)` }}
       >
@@ -155,15 +155,15 @@ export const HeroSection = () => {
       </div>
 
       {/* Glow effects with parallax */}
-      <div 
+      <div
         className="glow-orb absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-[120px] transition-transform duration-300"
         style={{ transform: `translate(${-mousePos.x * 2}px, ${-mousePos.y * 2}px)` }}
       />
-      <div 
+      <div
         className="glow-orb absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/15 rounded-full blur-[120px] transition-transform duration-300"
         style={{ transform: `translate(${mousePos.x * 2}px, ${mousePos.y * 2}px)` }}
       />
-      <div 
+      <div
         className="glow-orb absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[150px]"
       />
 
@@ -182,7 +182,7 @@ export const HeroSection = () => {
             </div>
 
             {/* Main name with enhanced glitch effect */}
-            <h1 className="hero-name text-4xl md:text-6xl lg:text-7xl font-bold mb-8 perspective-1000">
+            <h1 className="hero-name text-3xl md:text-6xl lg:text-7xl font-bold mb-8 perspective-1000">
               <span className="glitch text-foreground block" data-text="Venkatapathi">
                 {splitText('Venkatapathi')}
               </span>
@@ -201,7 +201,7 @@ export const HeroSection = () => {
             {/* Subtitle */}
             <p className="hero-subtitle text-lg md:text-xl text-muted-foreground font-mono mb-10 opacity-0">
               <span className="text-primary">&lt;</span>
-              Security Researcher / Web3 Builder / Developer
+              AI & ML Engineer / Web3 Builder / Developer
               <span className="text-primary">/&gt;</span>
             </p>
 
@@ -211,13 +211,9 @@ export const HeroSection = () => {
                 <Boxes className="w-5 h-5 text-neon-purple" />
                 <span className="font-mono text-sm text-neon-purple">Web3</span>
               </div>
-              <div className="hero-tag opacity-0 flex items-center gap-2 px-5 py-3 bg-card/60 border border-neon-red/50 rounded-xl backdrop-blur-sm hover:scale-105 hover:border-neon-red transition-all duration-300 cursor-default">
-                <Shield className="w-5 h-5 text-neon-red" />
-                <span className="font-mono text-sm text-neon-red">Red Team</span>
-              </div>
               <div className="hero-tag opacity-0 flex items-center gap-2 px-5 py-3 bg-card/60 border border-secondary/50 rounded-xl backdrop-blur-sm hover:scale-105 hover:border-secondary transition-all duration-300 cursor-default">
-                <Shield className="w-5 h-5 text-secondary" />
-                <span className="font-mono text-sm text-secondary">Blue Team</span>
+                <Brain className="w-5 h-5 text-secondary" />
+                <span className="font-mono text-sm text-secondary">AI & ML</span>
               </div>
               <div className="hero-tag opacity-0 flex items-center gap-2 px-5 py-3 bg-card/60 border border-primary/50 rounded-xl backdrop-blur-sm hover:scale-105 hover:border-primary transition-all duration-300 cursor-default">
                 <Code2 className="w-5 h-5 text-primary" />
@@ -227,14 +223,14 @@ export const HeroSection = () => {
 
             {/* CTA */}
             <div className="hero-subtitle opacity-0 flex justify-center lg:justify-start gap-4">
-              <button 
+              <button
                 onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
                 className="group relative px-8 py-4 bg-primary text-primary-foreground font-mono font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,102,0.5)]"
               >
                 <span className="relative z-10">View Projects</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
               </button>
-              <button 
+              <button
                 onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
                 className="px-8 py-4 border-2 border-primary text-primary font-mono font-semibold rounded-lg hover:bg-primary/10 hover:shadow-[0_0_20px_rgba(0,255,102,0.3)] transition-all duration-300"
               >
@@ -244,7 +240,7 @@ export const HeroSection = () => {
           </div>
 
           {/* Right - 3D Cyber Globe */}
-          <div 
+          <div
             className="hacker-scene opacity-0 hidden lg:block transition-transform duration-300"
             style={{ transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)` }}
           >

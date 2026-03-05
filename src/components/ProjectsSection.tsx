@@ -6,71 +6,17 @@ import { FloatingElements } from './FloatingElements';
 
 const featuredProjects = [
   {
-    title: 'SecureVault DeFi',
-    description: 'A decentralized vault protocol with advanced security features including multi-sig, time-locks, and automated threat detection.',
-    tags: ['Solidity', 'React', 'Web3.js', 'Hardhat'],
-    github: '#',
-    live: '#',
-    color: 'neon-purple',
-    category: 'Web3',
-  },
-  {
-    title: 'NetworkSentinel',
-    description: 'Real-time network intrusion detection system with ML-powered anomaly detection and automated response capabilities.',
-    tags: ['Python', 'TensorFlow', 'Flask', 'Elasticsearch'],
-    github: '#',
-    live: '#',
+    title: 'Responsible AI Medical Assistant (REAI v2)',
+    description: 'A trustworthy, blockchain-backed AI medical assistant that provides responsible health advice while ensuring accountability through immutable storage on the Algorand blockchain. Features an adaptive learning system and transparent transaction logging.',
+    tags: ['Python', 'Flask', 'Algorand', 'PyTorch', 'Transformers', 'Numpy'],
+    github: 'https://github.com/v3nom-95/reaiv2',
+    live: '',
     color: 'secondary',
-    category: 'Blue Team',
-  },
-  {
-    title: 'RedOps Toolkit',
-    description: 'A comprehensive penetration testing framework with automated reconnaissance, exploitation, and reporting modules.',
-    tags: ['Python', 'Bash', 'Docker', 'PostgreSQL'],
-    github: '#',
-    color: 'neon-red',
-    category: 'Red Team',
+    category: 'AI & ML',
   },
 ];
 
-const otherProjects = [
-  {
-    title: 'Smart Contract Auditor',
-    description: 'Automated vulnerability scanner for Solidity smart contracts.',
-    tags: ['Python', 'Slither', 'Mythril'],
-    category: 'Web3',
-  },
-  {
-    title: 'Phishing Analyzer',
-    description: 'ML-based phishing detection tool with browser extension.',
-    tags: ['JavaScript', 'TensorFlow.js', 'Chrome API'],
-    category: 'Blue Team',
-  },
-  {
-    title: 'Blockchain Explorer',
-    description: 'Custom block explorer for EVM-compatible chains.',
-    tags: ['React', 'ethers.js', 'Node.js'],
-    category: 'Web3',
-  },
-  {
-    title: 'CTF Platform',
-    description: 'Self-hosted capture the flag platform for security training.',
-    tags: ['Docker', 'Python', 'React'],
-    category: 'Red Team',
-  },
-  {
-    title: 'Password Manager',
-    description: 'Zero-knowledge encrypted password manager with WebAuthn.',
-    tags: ['TypeScript', 'WebCrypto', 'IndexedDB'],
-    category: 'Blue Team',
-  },
-  {
-    title: 'Log Analyzer',
-    description: 'SIEM-lite tool for parsing and analyzing security logs.',
-    tags: ['Go', 'Elasticsearch', 'Grafana'],
-    category: 'Blue Team',
-  },
-];
+
 
 export const ProjectsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -104,33 +50,32 @@ export const ProjectsSection = () => {
   }, []);
 
   const getColorClasses = (color: string) => ({
-    border: color === 'neon-red' ? 'border-neon-red/30 group-hover:border-neon-red/60' 
-          : color === 'secondary' ? 'border-secondary/30 group-hover:border-secondary/60'
-          : color === 'neon-purple' ? 'border-neon-purple/30 group-hover:border-neon-purple/60'
+    border: color === 'neon-red' ? 'border-neon-red/30 group-hover:border-neon-red/60'
+      : color === 'secondary' ? 'border-secondary/30 group-hover:border-secondary/60'
+        : color === 'neon-purple' ? 'border-neon-purple/30 group-hover:border-neon-purple/60'
           : 'border-primary/30 group-hover:border-primary/60',
-    text: color === 'neon-red' ? 'text-neon-red' 
-        : color === 'secondary' ? 'text-secondary'
+    text: color === 'neon-red' ? 'text-neon-red'
+      : color === 'secondary' ? 'text-secondary'
         : color === 'neon-purple' ? 'text-neon-purple'
-        : 'text-primary',
-    bg: color === 'neon-red' ? 'bg-neon-red/10' 
+          : 'text-primary',
+    bg: color === 'neon-red' ? 'bg-neon-red/10'
       : color === 'secondary' ? 'bg-secondary/10'
-      : color === 'neon-purple' ? 'bg-neon-purple/10'
-      : 'bg-primary/10',
-    glow: color === 'neon-red' ? 'group-hover:shadow-[0_0_50px_rgba(255,77,77,0.3)]' 
-          : color === 'secondary' ? 'group-hover:shadow-[0_0_50px_rgba(0,230,255,0.3)]'
-          : color === 'neon-purple' ? 'group-hover:shadow-[0_0_50px_rgba(153,51,255,0.3)]'
+        : color === 'neon-purple' ? 'bg-neon-purple/10'
+          : 'bg-primary/10',
+    glow: color === 'neon-red' ? 'group-hover:shadow-[0_0_50px_rgba(255,77,77,0.3)]'
+      : color === 'secondary' ? 'group-hover:shadow-[0_0_50px_rgba(0,230,255,0.3)]'
+        : color === 'neon-purple' ? 'group-hover:shadow-[0_0_50px_rgba(153,51,255,0.3)]'
           : 'group-hover:shadow-[0_0_50px_rgba(0,255,102,0.3)]',
-    gradient: color === 'neon-red' ? 'from-neon-red/20 to-transparent' 
-            : color === 'secondary' ? 'from-secondary/20 to-transparent'
-            : color === 'neon-purple' ? 'from-neon-purple/20 to-transparent'
-            : 'from-primary/20 to-transparent',
+    gradient: color === 'neon-red' ? 'from-neon-red/20 to-transparent'
+      : color === 'secondary' ? 'from-secondary/20 to-transparent'
+        : color === 'neon-purple' ? 'from-neon-purple/20 to-transparent'
+          : 'from-primary/20 to-transparent',
   });
 
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'Web3': return 'text-neon-purple border-neon-purple/50';
-      case 'Red Team': return 'text-neon-red border-neon-red/50';
-      case 'Blue Team': return 'text-secondary border-secondary/50';
+      case 'AI & ML': return 'text-secondary border-secondary/50';
       default: return 'text-primary border-primary/50';
     }
   };
@@ -153,7 +98,7 @@ export const ProjectsSection = () => {
           {featuredProjects.map((project, index) => {
             const colors = getColorClasses(project.color);
             const isHovered = hoveredProject === project.title;
-            
+
             return (
               <ScrollReveal key={project.title} direction={index % 2 === 0 ? 'left' : 'right'} delay={index * 100}>
                 <div
@@ -163,7 +108,7 @@ export const ProjectsSection = () => {
                 >
                   {/* Background gradient on hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
+
                   <div className="relative z-10 flex flex-col lg:flex-row lg:items-start gap-8">
                     <div className="flex-1">
                       <div className="flex items-center gap-4 mb-4">
@@ -173,11 +118,11 @@ export const ProjectsSection = () => {
                         </span>
                         <span className="font-mono text-xs text-muted-foreground">Featured</span>
                       </div>
-                      
+
                       <h3 className={`text-2xl md:text-3xl font-bold mb-4 ${colors.text} group-hover:translate-x-2 transition-transform duration-300`}>
                         {project.title}
                       </h3>
-                      
+
                       <p className="text-muted-foreground text-lg mb-6 leading-relaxed max-w-2xl">
                         {project.description}
                       </p>
@@ -220,7 +165,7 @@ export const ProjectsSection = () => {
                     <div className={`w-full lg:w-64 h-48 bg-gradient-to-br ${colors.gradient} rounded-xl border ${colors.border} flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
                       <div className="absolute inset-0 cyber-grid opacity-20" />
                       <Folder className={`w-16 h-16 ${colors.text} opacity-50 group-hover:scale-110 transition-transform`} />
-                      
+
                       {/* Animated corner */}
                       <div className={`absolute top-0 right-0 w-16 h-16 ${colors.bg} blur-xl group-hover:w-24 group-hover:h-24 transition-all duration-500`} />
                     </div>
@@ -231,53 +176,7 @@ export const ProjectsSection = () => {
           })}
         </div>
 
-        {/* Other Projects */}
-        <div>
-          <h3 className="text-xl font-bold mb-8 text-center font-mono">
-            <span className="text-primary">{'<'}</span>
-            Other Noteworthy Projects
-            <span className="text-primary">{'/>'}</span>
-          </h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map((project, index) => (
-              <ScrollReveal key={project.title} direction="up" delay={index * 50}>
-                <div className="group card-cyber p-6 border border-border hover:border-primary/50 transition-all duration-300 h-full hover:translate-y-[-8px] hover:shadow-[0_20px_40px_rgba(0,255,102,0.15)]">
-                  <div className="flex items-center justify-between mb-4">
-                    <Folder className="w-10 h-10 text-primary group-hover:scale-110 transition-transform" />
-                    <div className="flex items-center gap-3">
-                      <span className={`font-mono text-xs px-2 py-1 border rounded ${getCategoryColor(project.category)}`}>
-                        {project.category}
-                      </span>
-                      <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                        <Github className="w-5 h-5" />
-                      </a>
-                    </div>
-                  </div>
-
-                  <h4 className="font-bold text-lg mb-3 group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h4>
-                  
-                  <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
+        {/* Other Projects removed based on user request */}
       </div>
     </section>
   );
