@@ -136,7 +136,7 @@ export const NetworkSecurityViz = ({ type }: NetworkSecurityVizProps) => {
 
   if (type === 'red') {
     return (
-      <div ref={containerRef} className="relative w-full h-[300px]">
+      <div ref={containerRef} className="relative w-full h-[220px] md:h-[300px]">
         <svg viewBox="0 0 300 200" className="w-full h-full">
           <defs>
             <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -198,7 +198,7 @@ export const NetworkSecurityViz = ({ type }: NetworkSecurityVizProps) => {
 
   if (type === 'ai') {
     return (
-      <div ref={containerRef} className="relative w-full h-[300px] bg-black/5 rounded-2xl overflow-hidden border border-primary/10">
+      <div ref={containerRef} className="relative w-full h-[220px] md:h-[300px] bg-black/5 rounded-2xl overflow-hidden border border-primary/10">
         <svg viewBox="0 0 300 200" className="w-full h-full">
           <defs>
             <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -295,7 +295,7 @@ export const NetworkSecurityViz = ({ type }: NetworkSecurityVizProps) => {
   }
 
   return (
-    <div ref={containerRef} className="relative w-full h-[300px]">
+    <div ref={containerRef} className="relative w-full h-[220px] md:h-[300px]">
       <svg viewBox="0 0 300 200" className="w-full h-full">
         <defs>
           <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">

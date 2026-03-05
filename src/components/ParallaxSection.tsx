@@ -54,19 +54,15 @@ export const ScrollReveal = ({ children, direction = 'up', delay = 0, className 
     return () => observer.disconnect();
   }, [delay]);
 
-  const getTransform = () => {
-    switch (direction) {
-      case 'down': return 'translate-y-[-50px]';
-      case 'left': return 'translate-x-[50px]';
-      case 'right': return 'translate-x-[-50px]';
-      default: return 'translate-y-[50px]';
-    }
-  };
-
   return (
     <div
       ref={ref}
-      className={`opacity-0 ${getTransform()} transition-all duration-1000 ease-out [&.revealed]:opacity-100 [&.revealed]:translate-x-0 [&.revealed]:translate-y-0 ${className}`}
+      className={`opacity-0 transition-all duration-1000 ease-out 
+        ${direction === 'up' ? 'translate-y-[40px]' :
+          direction === 'down' ? 'translate-y-[-40px]' :
+            direction === 'left' ? 'md:translate-x-[40px] translate-y-[20px]' :
+              direction === 'right' ? 'md:translate-x-[-40px] translate-y-[20px]' : 'translate-y-[40px]'}
+        [&.revealed]:opacity-100 [&.revealed]:translate-x-0 [&.revealed]:translate-y-0 ${className}`}
     >
       {children}
     </div>

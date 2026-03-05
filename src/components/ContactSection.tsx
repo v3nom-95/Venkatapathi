@@ -64,13 +64,13 @@ export const ContactSection = () => {
   }, []);
 
   return (
-    <section id="contact" ref={sectionRef} className="py-24 relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 cyber-grid opacity-10" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[100px]" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
-        <div className="contact-title opacity-0 flex items-center gap-4 mb-12">
+        <div className="contact-title opacity-0 flex items-center gap-4 mb-8 md:mb-12">
           <span className="text-primary font-mono">04.</span>
           <h2 className="text-3xl md:text-4xl font-bold">Get In Touch</h2>
           <div className="flex-1 h-px bg-border" />
@@ -78,7 +78,7 @@ export const ContactSection = () => {
 
         <div className="max-w-2xl mx-auto text-center">
           {/* Terminal style message */}
-          <div className="contact-content opacity-0 card-cyber p-6 mb-8 text-left">
+          <div className="contact-content opacity-0 card-cyber p-5 md:p-6 mb-8 text-left">
             <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-neon-red/70" />

@@ -83,22 +83,22 @@ export const AboutSection = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 relative overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 cyber-grid opacity-10" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
-        <div className="about-title opacity-0 flex items-center gap-4 mb-12">
+        <div className="about-title opacity-0 flex items-center gap-4 mb-8 md:mb-12">
           <span className="text-primary font-mono">01.</span>
           <h2 className="text-3xl md:text-4xl font-bold">About Me</h2>
           <div className="flex-1 h-px bg-border" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Left - Bio + 3D Character */}
           <div className="about-content opacity-0 space-y-6">
             {/* Iron Man Arc Reactor 3D */}
-            <div className="cyber-orb-container">
+            <div className="cyber-orb-container flex justify-center lg:justify-start">
               <Suspense fallback={<CyberOrb />}>
                 <ArcReactor3D />
               </Suspense>
@@ -156,7 +156,7 @@ export const AboutSection = () => {
                 {skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-4 py-2 bg-muted/50 text-foreground text-sm font-mono rounded-lg border border-border hover:border-primary/50 transition-all duration-300 cursor-default"
+                    className="px-3 md:px-4 py-1.5 md:py-2 bg-muted/50 text-foreground text-sm font-mono rounded-lg border border-border hover:border-primary/50 transition-all duration-300 cursor-default"
                   >
                     {skill}
                   </span>

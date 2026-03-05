@@ -81,13 +81,13 @@ export const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" ref={sectionRef} className="py-24 relative overflow-hidden">
+    <section id="projects" ref={sectionRef} className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 cyber-grid opacity-10" />
       <FloatingElements count={12} type="hexagons" color="primary" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
-        <div className="projects-title opacity-0 flex items-center gap-4 mb-16">
+        <div className="projects-title opacity-0 flex items-center gap-4 mb-8 md:mb-16">
           <span className="text-primary font-mono">03.</span>
           <h2 className="text-3xl md:text-4xl font-bold">Projects</h2>
           <div className="flex-1 h-px bg-border" />
@@ -102,14 +102,14 @@ export const ProjectsSection = () => {
             return (
               <ScrollReveal key={project.title} direction={index % 2 === 0 ? 'left' : 'right'} delay={index * 100}>
                 <div
-                  className={`group relative card-cyber p-8 border ${colors.border} ${colors.glow} transition-all duration-500 overflow-hidden`}
+                  className={`group relative card-cyber p-6 md:p-8 border ${colors.border} ${colors.glow} transition-all duration-500 overflow-hidden`}
                   onMouseEnter={() => setHoveredProject(project.title)}
                   onMouseLeave={() => setHoveredProject(null)}
                 >
                   {/* Background gradient on hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
-                  <div className="relative z-10 flex flex-col lg:flex-row lg:items-start gap-8">
+                  <div className="relative z-10 flex flex-col lg:flex-row lg:items-start gap-6 md:gap-8">
                     <div className="flex-1">
                       <div className="flex items-center gap-4 mb-4">
                         <Star className={`w-6 h-6 ${colors.text}`} />
@@ -131,7 +131,7 @@ export const ProjectsSection = () => {
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-4 py-2 bg-muted/50 text-foreground text-sm font-mono rounded-lg border border-border group-hover:border-primary/30 transition-colors"
+                            className="px-3 md:px-4 py-1.5 md:py-2 bg-muted/50 text-foreground text-sm font-mono rounded-lg border border-border group-hover:border-primary/30 transition-colors"
                           >
                             {tag}
                           </span>
@@ -162,7 +162,7 @@ export const ProjectsSection = () => {
                     </div>
 
                     {/* Project visual */}
-                    <div className={`w-full lg:w-64 h-48 bg-gradient-to-br ${colors.gradient} rounded-xl border ${colors.border} flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
+                    <div className={`w-full lg:w-64 h-32 md:h-48 bg-gradient-to-br ${colors.gradient} rounded-xl border ${colors.border} flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
                       <div className="absolute inset-0 cyber-grid opacity-20" />
                       <Folder className={`w-16 h-16 ${colors.text} opacity-50 group-hover:scale-110 transition-transform`} />
 

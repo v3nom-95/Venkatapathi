@@ -182,7 +182,7 @@ export const HeroSection = () => {
             </div>
 
             {/* Main name with enhanced glitch effect */}
-            <h1 className="hero-name text-3xl md:text-6xl lg:text-7xl font-bold mb-8 perspective-1000">
+            <h1 className="hero-name text-4xl md:text-6xl lg:text-7xl font-bold mb-8 perspective-1000">
               <span className="glitch text-foreground block" data-text="Venkatapathi">
                 {splitText('Venkatapathi')}
               </span>
@@ -222,7 +222,7 @@ export const HeroSection = () => {
             </div>
 
             {/* CTA */}
-            <div className="hero-subtitle opacity-0 flex justify-center lg:justify-start gap-4">
+            <div className="hero-subtitle opacity-0 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
               <button
                 onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
                 className="group relative px-8 py-4 bg-primary text-primary-foreground font-mono font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,102,0.5)]"

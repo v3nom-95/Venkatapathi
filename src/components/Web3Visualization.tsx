@@ -74,7 +74,7 @@ export const Web3Visualization = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[400px] flex items-center justify-center">
+    <div className="relative w-full h-[250px] md:h-[400px] flex items-center justify-center">
       <svg
         ref={svgRef}
         viewBox="0 0 400 400"
@@ -91,10 +91,10 @@ export const Web3Visualization = () => {
             <stop offset="100%" stopColor="hsl(142 100% 50%)" />
           </linearGradient>
           <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
             <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
         </defs>
