@@ -6,6 +6,15 @@ import { FloatingElements } from './FloatingElements';
 
 const featuredProjects = [
   {
+    title: 'SurakshaNet',
+    description: 'An advanced, enterprise-grade fraud detection system for healthcare claims. Integrates machine learning for anomaly detection, Algorand blockchain for immutable audit trails, and quantum-resistant security to safeguard against emerging threats.',
+    tags: ['Python', 'TypeScript', 'Algorand', 'Blockchain', 'FastAPI', 'React'],
+    github: 'https://github.com/v3nom-95/SurakshaNet',
+    live: '',
+    color: 'neon-purple',
+    category: 'AI & ML | Blockchain | Quantum Resistant',
+  },
+  {
     title: 'Responsible AI Medical Assistant (REAI v2)',
     description: 'A trustworthy, blockchain-backed AI medical assistant that provides responsible health advice while ensuring accountability through immutable storage on the Algorand blockchain. Features an adaptive learning system and transparent transaction logging.',
     tags: ['Python', 'Flask', 'Algorand', 'PyTorch', 'Transformers', 'Numpy'],
@@ -73,6 +82,7 @@ export const ProjectsSection = () => {
   });
 
   const getCategoryColor = (category: string) => {
+    if (category.includes('Blockchain') && category.includes('AI')) return 'text-neon-purple border-neon-purple/50';
     switch (category) {
       case 'Web3': return 'text-neon-purple border-neon-purple/50';
       case 'AI & ML': return 'text-secondary border-secondary/50';
@@ -102,7 +112,7 @@ export const ProjectsSection = () => {
             return (
               <ScrollReveal key={project.title} direction={index % 2 === 0 ? 'left' : 'right'} delay={index * 100}>
                 <div
-                  className={`group relative card-cyber p-6 md:p-8 border ${colors.border} ${colors.glow} transition-all duration-500 overflow-hidden`}
+                  className={`group relative card-cyber p-4 sm:p-8 border ${colors.border} ${colors.glow} transition-all duration-500 overflow-hidden`}
                   onMouseEnter={() => setHoveredProject(project.title)}
                   onMouseLeave={() => setHoveredProject(null)}
                 >
@@ -113,7 +123,7 @@ export const ProjectsSection = () => {
                     <div className="flex-1">
                       <div className="flex items-center gap-4 mb-4">
                         <Star className={`w-6 h-6 ${colors.text}`} />
-                        <span className={`font-mono text-sm px-3 py-1 border rounded-full ${getCategoryColor(project.category)}`}>
+                        <span className={`font-mono text-[10px] sm:text-sm px-2 sm:px-3 py-1 border rounded-full ${getCategoryColor(project.category)}`}>
                           {project.category}
                         </span>
                         <span className="font-mono text-xs text-muted-foreground">Featured</span>
@@ -123,7 +133,7 @@ export const ProjectsSection = () => {
                         {project.title}
                       </h3>
 
-                      <p className="text-muted-foreground text-lg mb-6 leading-relaxed max-w-2xl">
+                      <p className="text-muted-foreground text-base sm:text-lg mb-6 leading-relaxed max-w-2xl">
                         {project.description}
                       </p>
 

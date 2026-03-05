@@ -62,7 +62,7 @@ export const ExpertiseSection = () => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.02 }
     );
 
     if (sectionRef.current) {
@@ -175,7 +175,7 @@ export const ExpertiseSection = () => {
   }, []);
 
   return (
-    <section id="expertise" ref={sectionRef} className="py-16 md:py-24 relative overflow-hidden">
+    <section id="expertise" ref={sectionRef} className="py-16 md:py-24 relative overflow-hidden scroll-mt-20">
       <div className="absolute inset-0 cyber-grid opacity-10" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[150px]" />
 
@@ -201,7 +201,7 @@ export const ExpertiseSection = () => {
                 delay={index * 100}
               >
                 <div
-                  className={`relative card-cyber p-6 md:p-8 border ${colors.border} ${colors.glow} transition-all duration-700 group overflow-hidden`}
+                  className={`relative card-cyber p-4 sm:p-8 border ${colors.border} ${colors.glow} transition-all duration-700 group overflow-hidden`}
                 >
                   <FloatingElements count={10} type="hexagons" color={colors.floatingColor} />
 
@@ -215,17 +215,17 @@ export const ExpertiseSection = () => {
                             <Icon className={`w-5 h-5 ${colors.text}`} />
                             <span className={`font-mono text-sm ${colors.text}`}>{area.subtitle}</span>
                           </div>
-                          <h3 className="text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
                             {area.title}
                           </h3>
                         </div>
-                        <div className={`p-4 rounded-xl ${colors.bg} group-hover:scale-110 transition-transform duration-500`}>
-                          <Icon className={`w-8 h-8 ${colors.text}`} />
+                        <div className={`p-3 sm:p-4 rounded-xl ${colors.bg} group-hover:scale-110 transition-transform duration-500`}>
+                          <Icon className={`w-6 h-6 sm:w-8 sm:h-8 ${colors.text}`} />
                         </div>
                       </div>
 
                       {/* Description */}
-                      <p className="text-muted-foreground text-lg leading-relaxed">
+                      <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
                         {area.description}
                       </p>
 

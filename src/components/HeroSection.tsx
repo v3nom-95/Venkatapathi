@@ -43,7 +43,7 @@ export const HeroSection = () => {
       opacity: [0, 1],
       rotateX: [-90, 0],
       duration: 1200,
-      delay: stagger(80, { start: 800 }),
+      delay: stagger(window.innerWidth < 768 ? 40 : 80, { start: window.innerWidth < 768 ? 400 : 800 }),
       ease: 'outExpo',
     });
 
@@ -114,7 +114,11 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden scanline">
+    <section
+      id="hero"
+      ref={containerRef}
+      className="relative min-h-screen lg:h-screen flex items-center lg:justify-center overflow-hidden scanline pt-32 pb-12 lg:py-0 scroll-mt-20"
+    >
       {/* Matrix Rain Background */}
       <MatrixRain />
 
@@ -167,26 +171,31 @@ export const HeroSection = () => {
         className="glow-orb absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[150px]"
       />
 
-      <div ref={containerRef} className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Text content */}
           <div className="text-center lg:text-left">
             {/* Terminal prefix with typing effect */}
-            <div className="font-mono text-primary mb-6 opacity-0 hero-subtitle flex items-center justify-center lg:justify-start gap-2">
-              <span className="w-3 h-3 rounded-full bg-neon-red animate-pulse" />
-              <span className="w-3 h-3 rounded-full bg-yellow-500 animate-pulse" style={{ animationDelay: '0.2s' }} />
-              <span className="w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: '0.4s' }} />
-              <span className="ml-2 text-muted-foreground">root@v3nom95:~$</span>
-              <span className="text-primary">./portfolio.sh</span>
-              <span className="animate-pulse">▊</span>
+            {/* Terminal prefix with typing effect - Responsive wrapping */}
+            <div className="font-mono text-primary mb-6 opacity-0 hero-subtitle flex flex-wrap items-center justify-center lg:justify-start gap-x-2 gap-y-1">
+              <div className="flex gap-1.5 px-2 py-1 bg-muted/30 rounded-full">
+                <span className="w-2 h-2 rounded-full bg-neon-red animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" style={{ animationDelay: '0.2s' }} />
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: '0.4s' }} />
+              </div>
+              <div className="flex flex-wrap items-center gap-x-2">
+                <span className="text-muted-foreground whitespace-nowrap">root@v3nom95:~$</span>
+                <span className="text-primary break-all">./portfolio.sh</span>
+                <span className="animate-pulse bg-primary w-2 h-4" />
+              </div>
             </div>
 
             {/* Main name with enhanced glitch effect */}
-            <h1 className="hero-name text-4xl md:text-6xl lg:text-7xl font-bold mb-8 perspective-1000">
-              <span className="glitch text-foreground block" data-text="Venkatapathi">
+            <h1 className="hero-name text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 perspective-1000 flex flex-wrap justify-center lg:justify-start gap-x-2">
+              <span className="glitch text-foreground block whitespace-nowrap" data-text="Venkatapathi">
                 {splitText('Venkatapathi')}
               </span>
-              <span className="text-gradient-cyber block mt-2" ref={textRef}>
+              <span className="text-gradient-cyber block whitespace-nowrap" ref={textRef}>
                 {splitText('Babu')}
               </span>
             </h1>
@@ -199,7 +208,8 @@ export const HeroSection = () => {
             </div>
 
             {/* Subtitle */}
-            <p className="hero-subtitle text-lg md:text-xl text-muted-foreground font-mono mb-10 opacity-0">
+            {/* Subtitle */}
+            <p className="hero-subtitle text-sm sm:text-lg md:text-xl text-muted-foreground font-mono mb-10 opacity-0 max-w-md mx-auto lg:mx-0 leading-relaxed">
               <span className="text-primary">&lt;</span>
               AI & ML Engineer / Web3 Builder / Developer
               <span className="text-primary">/&gt;</span>
@@ -241,7 +251,7 @@ export const HeroSection = () => {
 
           {/* Right - 3D Cyber Globe */}
           <div
-            className="hacker-scene opacity-0 hidden lg:block transition-transform duration-300"
+            className="hacker-scene opacity-0 block transition-transform duration-300"
             style={{ transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)` }}
           >
             <Suspense fallback={<HackerScene />}>

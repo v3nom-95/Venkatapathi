@@ -10,12 +10,12 @@ function CyberSphere({ mousePosition }: { mousePosition: { x: number; y: number 
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    
+
     if (sphereRef.current) {
       sphereRef.current.rotation.y = t * 0.1 + mousePosition.x * 0.5;
       sphereRef.current.rotation.x = Math.sin(t * 0.2) * 0.1 + mousePosition.y * 0.3;
     }
-    
+
     if (wireframeRef.current) {
       wireframeRef.current.rotation.y = -t * 0.15 + mousePosition.x * 0.3;
       wireframeRef.current.rotation.z = t * 0.1;
@@ -71,7 +71,7 @@ function CyberSphere({ mousePosition }: { mousePosition: { x: number; y: number 
 
 function ParticleField() {
   const ref = useRef<THREE.Points>(null);
-  
+
   const particleCount = 2000;
   const positions = useMemo(() => {
     const pos = new Float32Array(particleCount * 3);
@@ -79,7 +79,7 @@ function ParticleField() {
       const radius = 3 + Math.random() * 5;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
-      
+
       pos[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
       pos[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
       pos[i * 3 + 2] = radius * Math.cos(phi);
@@ -110,7 +110,7 @@ function ParticleField() {
 
 function DataStreams() {
   const groupRef = useRef<THREE.Group>(null);
-  
+
   const streams = useMemo(() => {
     return Array.from({ length: 8 }, (_, i) => ({
       angle: (i / 8) * Math.PI * 2,
@@ -175,9 +175,9 @@ export const CyberGlobe3D = ({ className = '' }: CyberGlobe3DProps) => {
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      className={`w-full h-[500px] ${className}`}
+      className={`w-full h-[300px] md:h-[500px] ${className}`}
       onMouseMove={handleMouseMove}
     >
       <Canvas
@@ -188,13 +188,13 @@ export const CyberGlobe3D = ({ className = '' }: CyberGlobe3DProps) => {
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} color="#00ff66" />
         <pointLight position={[-10, -10, -10]} intensity={0.5} color="#9933ff" />
-        
+
         <CyberSphere mousePosition={mousePosition.current} />
         <ParticleField />
         <DataStreams />
-        
-        <OrbitControls 
-          enableZoom={false} 
+
+        <OrbitControls
+          enableZoom={false}
           enablePan={false}
           autoRotate
           autoRotateSpeed={0.5}

@@ -72,7 +72,7 @@ export const AboutSection = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.01 }
     );
 
     if (sectionRef.current) {
@@ -83,7 +83,7 @@ export const AboutSection = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-16 md:py-24 relative overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-20 md:py-24 relative overflow-hidden scroll-mt-20">
       <div className="absolute inset-0 cyber-grid opacity-10" />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -104,7 +104,7 @@ export const AboutSection = () => {
               </Suspense>
             </div>
 
-            <div className="card-cyber p-6 space-y-4">
+            <div className="card-cyber p-4 sm:p-6 space-y-4">
               <div className="flex items-center gap-3 text-primary">
                 <User className="w-5 h-5" />
                 <span className="font-mono text-sm">whoami</span>
@@ -147,7 +147,7 @@ export const AboutSection = () => {
             {/* Terminal Typing Animation */}
             <TerminalTyping />
 
-            <div className="card-cyber p-6">
+            <div className="card-cyber p-4 sm:p-6">
               <div className="flex items-center gap-3 text-primary mb-6">
                 <span className="font-mono text-sm">./skills.sh</span>
               </div>

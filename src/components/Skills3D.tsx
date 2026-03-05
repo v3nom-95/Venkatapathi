@@ -49,7 +49,6 @@ function SkillOrb({ position, skill, color, delay = 0 }: { position: [number, nu
           color={color}
           anchorX="center"
           anchorY="middle"
-          font="/fonts/JetBrainsMono-Regular.ttf"
         >
           {skill}
         </Text>
@@ -156,7 +155,7 @@ export const Skills3D = ({ className = '' }: Skills3DProps) => {
   ];
 
   return (
-    <div className={`w-full h-[450px] ${className}`}>
+    <div className={`w-full h-[300px] md:h-[450px] ${className}`}>
       <Canvas
         camera={{ position: [0, 0, 6], fov: 50 }}
         gl={{ antialias: true, alpha: true }}

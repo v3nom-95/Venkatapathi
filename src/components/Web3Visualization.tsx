@@ -74,7 +74,7 @@ export const Web3Visualization = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[250px] md:h-[400px] flex items-center justify-center">
+    <div className="relative w-full h-[200px] sm:h-[250px] md:h-[400px] flex items-center justify-center">
       <svg
         ref={svgRef}
         viewBox="0 0 400 400"

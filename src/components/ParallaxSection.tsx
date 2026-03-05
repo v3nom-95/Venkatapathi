@@ -29,13 +29,14 @@ export const ParallaxSection = ({ children, speed = 0.5, className = '' }: Paral
 };
 
 interface ScrollRevealProps {
-  children: ReactNode;
+  children: React.ReactNode;
   direction?: 'up' | 'down' | 'left' | 'right';
   delay?: number;
   className?: string;
+  threshold?: number;
 }
 
-export const ScrollReveal = ({ children, direction = 'up', delay = 0, className = '' }: ScrollRevealProps) => {
+export const ScrollReveal = ({ children, direction = 'up', delay = 0, className = '', threshold = 0.05 }: ScrollRevealProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,12 +48,12 @@ export const ScrollReveal = ({ children, direction = 'up', delay = 0, className 
           }, delay);
         }
       },
-      { threshold: 0.1 }
+      { threshold }
     );
 
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [delay]);
+  }, [delay, threshold]);
 
   return (
     <div

@@ -3,7 +3,7 @@ import { animate, stagger } from 'animejs';
 import { Menu, X, Github } from 'lucide-react';
 
 const navItems = [
-  { label: 'Home', href: '#home' },
+  { label: 'Home', href: '#hero' },
   { label: 'About', href: '#about' },
   { label: 'Expertise', href: '#expertise' },
   { label: 'Projects', href: '#projects' },
@@ -49,7 +49,7 @@ export const Navbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <button
-            onClick={() => scrollToSection('#home')}
+            onClick={() => scrollToSection('#hero')}
             className="font-mono text-xl font-bold text-primary text-glow-green"
           >
             &lt;v3nom95 /&gt;

@@ -7,14 +7,15 @@ import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { ScrollProgressBar } from '@/components/ScrollProgressBar';
 import { Background3D } from '@/components/Background3D';
+import { ScrollReveal } from '@/components/ParallaxSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/30">
       <Background3D />
       <ScrollProgressBar />
       <Navbar />
-      <main className="relative z-10">
+      <main className="relative z-10 w-full overflow-hidden">
         <HeroSection />
         <AboutSection />
         <ExpertiseSection />
