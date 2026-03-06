@@ -95,6 +95,7 @@ export const ProjectsSection = () => {
     switch (category) {
       case 'Web3': return 'text-neon-purple border-neon-purple/50';
       case 'AI & ML': return 'text-secondary border-secondary/50';
+      case 'ML & DL': return 'text-neon-red border-neon-red/50';
       default: return 'text-primary border-primary/50';
     }
   };
