@@ -25,12 +25,12 @@ const featuredProjects = [
   },
   {
     title: 'Doc Verification',
-    description: 'A comprehensive document verification system utilizing advanced validation techniques and security protocols to ensure document authenticity and integrity. Implements blockchain integration for immutable verification records and audit trails.',
-    tags: ['TypeScript', 'React', 'Blockchain', 'Security', 'Node.js'],
+    description: 'A Flask-based web application for automated verification of identity documents (Aadhar cards) using YOLOv8 object detection. This system validates that all required security features and information elements are present in the document.',
+    tags: ['Python', 'Flask', 'YOLOv8', 'Deep Learning', 'OpenCV', 'Object Detection'],
     github: 'https://github.com/v3nom-95/doc-verification',
     live: '',
     color: 'neon-red',
-    category: 'Blockchain | Security',
+    category: 'ML & DL',
   },
 ];
 
