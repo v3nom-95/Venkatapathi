@@ -23,6 +23,15 @@ const featuredProjects = [
     color: 'secondary',
     category: 'AI & ML',
   },
+  {
+    title: 'Doc Verification',
+    description: 'A comprehensive document verification system utilizing advanced validation techniques and security protocols to ensure document authenticity and integrity. Implements blockchain integration for immutable verification records and audit trails.',
+    tags: ['TypeScript', 'React', 'Blockchain', 'Security', 'Node.js'],
+    github: 'https://github.com/v3nom-95/doc-verification',
+    live: '',
+    color: 'neon-red',
+    category: 'Blockchain | Security',
+  },
 ];
 
 
